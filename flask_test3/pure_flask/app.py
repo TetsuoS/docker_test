@@ -2,6 +2,7 @@
 from flask import Flask, jsonify, request
 import os
 app = Flask(__name__)
+print(os.getcwd())
 flask_conf_file = os.path.join(os.getcwd(), 'conf', 'flask_conf.cfg')
 mail_file = os.path.join(os.getcwd(), 'data', 'personal_info.csv')
 app.config.from_pyfile(flask_conf_file)
