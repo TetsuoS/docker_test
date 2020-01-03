@@ -3,7 +3,7 @@ from flask import Flask, jsonify, request
 import os
 app = Flask(__name__)
 flask_conf_file = os.path.join(os.getcwd(), 'conf', 'flask_conf.cfg')
-mail_file = os.path.join(os.getcwd(), '..', 'data', 'personal_info.csv')
+mail_file = os.path.join(os.getcwd(), 'data', 'personal_info.csv')
 app.config.from_pyfile(flask_conf_file)
 
 
@@ -27,4 +27,7 @@ def hello():
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=5000)
+    app.run(host='0.0.0.0', port=5000)
+    # 最終的にはここは消す。以下の手順でアプリケーションを起動する。
+    # export FLASK_APP=app.py
+    # python -m flask run --host=0.0.0.0 --port=3000
