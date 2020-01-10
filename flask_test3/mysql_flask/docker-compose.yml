@@ -2,6 +2,7 @@ version: '3'
 services:
   api1:
     build: python
+    container_name: api_server
     ports:
       - "5000:5000"
     tty: yes
@@ -11,11 +12,11 @@ services:
     depends_on:  # api1サーバーはdbサーバーが立ってから起動
       - db
     networks:  # api1とdbを接続するための共通ネットワーク指定
-      - app-net
+      - app_net
     # command: flask run --host 0.0.0.0 --port 5000
   db:
     build: mysql
-    container_name: mysql_test
+    container_name: db_server
     ports:
       - '3306:3306'
     environment:
@@ -26,9 +27,9 @@ services:
       - db-data/:/var/lib/mysql
     command: mysqld
     networks:
-      - app-net
+      - app_net
 volumes:
   db-data:
 networks:
-  app-net:
+  app_net:
     driver: bridge
