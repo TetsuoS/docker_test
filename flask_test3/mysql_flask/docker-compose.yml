@@ -1,6 +1,6 @@
 version: '3'
 services:
-  api1:
+  api:
     build: python
     container_name: api_server
     ports:
@@ -24,7 +24,7 @@ services:
       MYSQL_DATABASE: testdb
       TZ: Asia/Tokyo
     volumes:
-      - db-data/:/var/lib/mysql
+      - ./db-data:/var/lib/mysql
     command: mysqld
     networks:
       - app_net
